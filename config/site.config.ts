@@ -185,7 +185,7 @@ export const siteConfig: SiteConfig = {
     },
     {
       title: "Facebook",
-      url: "https://facebook.com/example", // TODO: replace placeholder
+      url: "https://www.facebook.com/profile.php?id=61594012509992", // TODO: replace placeholder
       icon: "facebook",
       enabled: true,
     },
