@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Background styles, driven by theme.backgroundStyle ──────── */
+
+/* Solid: just the flat background color, nothing extra needed. */
+
+/* Gradient: a soft brand-tinted wash */
+body[data-bg-style="gradient"] {
+  background-image: radial-gradient(
+      circle at 20% 0%,
+      color-mix(in srgb, var(--color-primary) 18%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      color-mix(in srgb, var(--color-accent) 14%, transparent),
+      transparent 50%
+    );
+  background-attachment: fixed;
+}
+
+/* Pattern: a very subtle geometric pixel-grid, MadeMint-style */
+body[data-bg-style="pattern"] {
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--color-secondary) 6%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+  background-position: -11px -11px;
+}
+
+/* ── Dark mode overrides ──────────────────────────────────────
+   Applied automatically when theme.mode === "dark" in the config.
+   Colors are still driven by the same CSS variables; this just
+   nudges surface/text pairs for contrast when a brand hasn't
+   supplied its own dark palette. Override theme.colors directly
+   in config/site.config.ts for full control. */
+body[data-theme-mode="dark"] {
+  color-scheme: dark;
+}
+
+/* Keyboard focus is always visible, regardless of theme */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
